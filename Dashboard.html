@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Uzy Hub Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="header">
+            <div class="header-content">
+                <h1>📊 Uzy Hub - Dashboard</h1>
+                <button class="logout-btn" onclick="logout()">Déconnexion</button>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <!-- Total Members -->
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-content">
+                    <h3>Membres Totaux</h3>
+                    <p class="stat-number" id="totalMembers">-</p>
+                </div>
+            </div>
+
+            <!-- Stats par Rôle -->
+            <div class="roles-container">
+                <div class="role-stat" style="--color: #ff0000;">
+                    <span class="role-name">👑 Admin</span>
+                    <span class="role-count" id="admin">0</span>
+                </div>
+                <div class="role-stat" style="--color: #ff6b00;">
+                    <span class="role-name">⭐ Super Modo</span>
+                    <span class="role-count" id="superModo">0</span>
+                </div>
+                <div class="role-stat" style="--color: #ffb300;">
+                    <span class="role-name">🔨 Modo</span>
+                    <span class="role-count" id="modo">0</span>
+                </div>
+                <div class="role-stat" style="--color: #7289da;">
+                    <span class="role-name">🛡️ Staff</span>
+                    <span class="role-count" id="staff">0</span>
+                </div>
+                <div class="role-stat" style="--color: #00d4aa;">
+                    <span class="role-name">✨ Créateur</span>
+                    <span class="role-count" id="creator">0</span>
+                </div>
+                <div class="role-stat" style="--color: #9c27b0;">
+                    <span class="role-name">💎 Super Membre</span>
+                    <span class="role-count" id="superMember">0</span>
+                </div>
+                <div class="role-stat" style="--color: #6c757d;">
+                    <span class="role-name">👤 Membre</span>
+                    <span class="role-count" id="member">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="user-info">
+            <p>Connecté en tant que : <strong id="username">-</strong></p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
