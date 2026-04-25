@@ -1,7 +1,7 @@
 // ⚠️ REMPLACE CECI PAR TON CLIENT ID
-const CLIENT_ID = 'METS_TON_CLIENT_ID_ICI';
+const CLIENT_ID = '1489310793806774333';
 const REDIRECT_URI = 'https://MMT-Entertaiment.github.io/callback.html';
-const SERVER_ID = 'METS_TON_SERVER_ID_ICI'; // ID de ton serveur Discord
+const SERVER_ID = '1461838244651204812'; // ID de ton serveur Discord
 
 // Au chargement de la page
 window.addEventListener('load', () => {
