@@ -3,125 +3,571 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion en cours...</title>
+    <title>Panel Admin — MMT Entertainment</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap');
+
+        :root {
+            --bg: #0a0b0f;
+            --surface: #12141a;
+            --border: #1e2130;
+            --accent: #5865F2;
+            --accent-dim: #5865F220;
+            --text: #e8eaf0;
+            --muted: #6b7280;
+            --danger: #ef4444;
+            --success: #22c55e;
+        }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: #0d0f13;
-            color: #fff;
+            background: var(--bg);
+            color: var(--text);
             font-family: 'Syne', sans-serif;
-            height: 100vh;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            position: fixed;
+            left: 0; top: 0; bottom: 0;
+            width: 240px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 24px 0;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            padding: 0 24px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .sidebar-logo h1 {
+            font-size: 16px;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            color: var(--text);
+        }
+
+        .sidebar-logo span {
+            font-size: 11px;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.1em;
+        }
+
+        .sidebar-nav {
+            padding: 16px 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-label {
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            color: var(--muted);
+            padding: 8px 12px 4px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            color: var(--muted);
+            transition: all 0.15s;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nav-item:hover {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        .nav-item.active {
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .nav-item .icon { font-size: 16px; }
+
+        .sidebar-user {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            overflow: hidden;
+        }
+
+        .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .user-info { flex: 1; min-width: 0; }
+
+        .user-name {
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-role {
+            font-size: 11px;
+            color: var(--accent);
+            font-family: 'DM Mono', monospace;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 16px;
+            transition: color 0.15s;
+        }
+
+        .logout-btn:hover { color: var(--danger); }
+
+        /* MAIN */
+        .main {
+            margin-left: 240px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .page-header p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--muted);
+            letter-spacing: 0.05em;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .stat-value.accent { color: var(--accent); }
+        .stat-value.success { color: var(--success); }
+        .stat-value.danger { color: var(--danger); }
+
+        /* SECTION */
+        .section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-family: 'DM Mono', monospace;
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        /* LOADING */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 24px;
+            gap: 20px;
+            z-index: 9999;
         }
 
         .spinner {
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             border: 3px solid #ffffff10;
-            border-top: 3px solid #5865F2;
+            border-top: 3px solid var(--accent);
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        #loading-screen p {
+            color: var(--muted);
+            font-size: 13px;
+            font-family: 'DM Mono', monospace;
         }
 
-        p {
-            color: #aaa;
-            font-size: 14px;
-            letter-spacing: 0.05em;
+        /* MEMBERS TABLE */
+        .members-table {
+            width: 100%;
+            border-collapse: collapse;
         }
 
-        .error {
-            color: #ff4d4d;
-            font-size: 14px;
+        .members-table th {
+            padding: 10px 20px;
+            text-align: left;
+            font-size: 11px;
+            color: var(--muted);
+            font-family: 'DM Mono', monospace;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .members-table td {
+            padding: 12px 20px;
+            font-size: 13px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .members-table tr:last-child td { border-bottom: none; }
+
+        .member-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .member-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .member-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+        .role-tag {
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'DM Mono', monospace;
+            background: var(--border);
+            color: var(--muted);
+        }
+
+        .role-tag.admin {
+            background: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        /* ACTIONS */
+        .action-btn {
+            padding: 6px 14px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            transition: all 0.15s;
+        }
+
+        .action-btn.danger {
+            background: #ef444420;
+            color: var(--danger);
+        }
+
+        .action-btn.danger:hover { background: #ef444440; }
+
+        .empty-state {
+            padding: 40px;
             text-align: center;
-            max-width: 300px;
-            line-height: 1.6;
+            color: var(--muted);
+            font-size: 13px;
         }
+
+        #app { display: none; }
     </style>
 </head>
 <body>
-    <div class="spinner" id="spinner"></div>
-    <p id="message">Authentification en cours...</p>
+
+    <!-- LOADING -->
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <p>Vérification des accès...</p>
+    </div>
+
+    <!-- APP -->
+    <div id="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h1>MMT Entertainment</h1>
+                <span>PANEL ADMIN</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-label">Navigation</div>
+                <button class="nav-item active" onclick="showPage('overview')">
+                    <span class="icon">📊</span> Vue d'ensemble
+                </button>
+                <button class="nav-item" onclick="showPage('members')">
+                    <span class="icon">👥</span> Membres
+                </button>
+                <button class="nav-item" onclick="showPage('logs')">
+                    <span class="icon">📋</span> Logs
+                </button>
+            </nav>
+
+            <div class="sidebar-user">
+                <div class="user-avatar" id="sidebar-avatar">?</div>
+                <div class="user-info">
+                    <div class="user-name" id="sidebar-username">Chargement...</div>
+                    <div class="user-role">Administrateur</div>
+                </div>
+                <button class="logout-btn" onclick="logout()" title="Déconnexion">⏻</button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main">
+
+            <!-- PAGE: Overview -->
+            <div id="page-overview">
+                <div class="page-header">
+                    <h2>Vue d'ensemble</h2>
+                    <p>Bienvenue sur le panel d'administration de MMT Entertainment.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">SERVEUR</div>
+                        <div class="stat-value accent">MMT</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">STATUT</div>
+                        <div class="stat-value success">EN LIGNE</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">ACCÈS</div>
+                        <div class="stat-value accent">ADMIN</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-title">Informations du compte</div>
+                    </div>
+                    <div style="padding: 20px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <div class="user-avatar" style="width: 56px; height: 56px; font-size: 22px;" id="profile-avatar">?</div>
+                            <div>
+                                <div style="font-size: 18px; font-weight: 700;" id="profile-name">Chargement...</div>
+                                <div style="font-size: 13px; color: var(--muted); font-family: 'DM Mono', monospace;" id="profile-id"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Members -->
+            <div id="page-members" style="display:none;">
+                <div class="page-header">
+                    <h2>Membres</h2>
+                    <p>Gestion des membres du serveur.</p>
+                </div>
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-title">Liste des membres</div>
+                        <span class="badge">Bientôt disponible</span>
+                    </div>
+                    <div class="empty-state">
+                        Cette section nécessite un Bot Token pour accéder aux membres.<br>
+                        Ajoutez votre Bot Token dans le Worker pour activer cette fonctionnalité.
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: Logs -->
+            <div id="page-logs" style="display:none;">
+                <div class="page-header">
+                    <h2>Logs</h2>
+                    <p>Historique des actions administratives.</p>
+                </div>
+                <div class="section">
+                    <div class="section-header">
+                        <div class="section-title">Activité récente</div>
+                        <span class="badge">Bientôt disponible</span>
+                    </div>
+                    <div class="empty-state">
+                        Aucun log disponible pour le moment.
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
 
     <script>
-        const WORKER_URL = "https://oauth2.uzydoorman.workers.dev/";
+        const WORKER_URL = "https://oauth2.uzydoorman.workers.dev";
 
-        async function handleCallback() {
-            const params = new URLSearchParams(window.location.search);
-            const code = params.get('code');
+        async function init() {
+            const token = localStorage.getItem('discord_token');
+            const savedUser = localStorage.getItem('discord_user');
 
-            if (!code) {
-                showError("Aucun code d'autorisation reçu. Redirection...");
-                setTimeout(() => window.location.href = 'index.html', 2000);
+            if (!token) {
+                window.location.href = 'index.html';
                 return;
             }
 
+            // Si on a déjà les infos user en cache
+            if (savedUser) {
+                const user = JSON.parse(savedUser);
+                loadUserUI(user);
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+                return;
+            }
+
+            // Sinon on re-vérifie
             try {
-                document.getElementById('message').textContent = "Échange du token...";
-
-                // Étape 1 : Échanger le code contre un token
-                const tokenRes = await fetch(`${WORKER_URL}/token`, {
+                const res = await fetch(`${WORKER_URL}/check-admin`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ code })
+                    body: JSON.stringify({ token })
                 });
 
-                const tokenData = await tokenRes.json();
+                const data = await res.json();
 
-                if (!tokenData.access_token) {
-                    showError("Erreur lors de la récupération du token. Redirection...");
-                    setTimeout(() => window.location.href = 'index.html', 2000);
+                if (!data.isAdmin) {
+                    alert("Accès refusé. Vous n'êtes pas administrateur.");
+                    logout();
                     return;
                 }
 
-                document.getElementById('message').textContent = "Vérification des permissions...";
+                localStorage.setItem('discord_user', JSON.stringify(data.user));
+                loadUserUI(data.user);
 
-                // Étape 2 : Vérifier si l'utilisateur est admin
-                const adminRes = await fetch(`${WORKER_URL}/check-admin`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ token: tokenData.access_token })
-                });
-
-                const adminData = await adminRes.json();
-
-                if (!adminData.isAdmin) {
-                    showError("Accès refusé. Vous n'êtes pas administrateur. Redirection...");
-                    setTimeout(() => window.location.href = 'index.html', 3000);
-                    return;
-                }
-
-                // Étape 3 : Sauvegarder et rediriger
-                localStorage.setItem('discord_token', tokenData.access_token);
-                localStorage.setItem('discord_user', JSON.stringify(adminData.user));
-
-                document.getElementById('message').textContent = "Accès autorisé ! Redirection...";
-                setTimeout(() => window.location.href = 'dashboard.html', 1000);
+                document.getElementById('loading-screen').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
 
             } catch (err) {
-                showError("Une erreur est survenue. Veuillez réessayer.");
-                setTimeout(() => window.location.href = 'index.html', 3000);
+                alert("Erreur de connexion. Veuillez réessayer.");
+                logout();
             }
         }
 
-        function showError(msg) {
-            document.getElementById('spinner').style.display = 'none';
-            const p = document.getElementById('message');
-            p.className = 'error';
-            p.textContent = msg;
+        function loadUserUI(user) {
+            const displayName = user.global_name || user.username;
+
+            // Sidebar
+            document.getElementById('sidebar-username').textContent = displayName;
+
+            // Profile page
+            document.getElementById('profile-name').textContent = displayName;
+            document.getElementById('profile-id').textContent = `ID: ${user.id}`;
+
+            // Avatars
+            if (user.avatar) {
+                const avatarUrl = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`;
+                document.getElementById('sidebar-avatar').innerHTML = `<img src="${avatarUrl}" alt="avatar">`;
+                document.getElementById('profile-avatar').innerHTML = `<img src="${avatarUrl}" alt="avatar">`;
+            } else {
+                const initial = displayName.charAt(0).toUpperCase();
+                document.getElementById('sidebar-avatar').textContent = initial;
+                document.getElementById('profile-avatar').textContent = initial;
+            }
         }
 
-        handleCallback();
+        function showPage(page) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('[id^="page-"]').forEach(el => el.style.display = 'none');
+            document.getElementById(`page-${page}`).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+
+        function logout() {
+            localStorage.removeItem('discord_token');
+            localStorage.removeItem('discord_user');
+            window.location.href = 'index.html';
+        }
+
+        init();
     </script>
 </body>
 </html>
