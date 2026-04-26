@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzy Hub — Guide d'installation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080a0e;
+            --surface: #0f1117;
+            --surface2: #161820;
+            --border: #1f2230;
+            --accent: #5865F2;
+            --accent-glow: #5865F240;
+            --text: #e8eaf2;
+            --muted: #555870;
+            --danger: #f04747;
+            --success: #23d160;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+        /* TOPBAR */
+        .topbar { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 16px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .topbar-left { display: flex; align-items: center; gap: 10px; }
+        .topbar-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .06em; line-height: 1; }
+        .topbar-logo span { color: var(--accent); }
+        .topbar-badge { font-size: 9px; font-family: 'DM Mono', monospace; letter-spacing: .12em; color: var(--accent); background: var(--accent-glow); padding: 3px 7px; border-radius: 4px; }
+
+        /* CONTENT */
+        .content { padding: 20px 16px 40px; max-width: 600px; margin: 0 auto; }
+
+        /* GUIDE TITLE */
+        .guide-title { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: .04em; color: var(--text); margin-bottom: 8px; }
+        .guide-intro { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 28px; }
+
+        /* STEP */
+        .step { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 16px; }
+        .step-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+        .step-number { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: .1em; color: var(--accent); background: var(--accent-glow); padding: 3px 10px; border-radius: 6px; flex-shrink: 0; }
+        .step-title { font-size: 14px; font-weight: 600; }
+        .step-body { padding: 14px 16px; font-size: 13px; color: var(--muted); line-height: 1.7; }
+        .step-img { width: 100%; border-radius: 0 0 14px 14px; display: block; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar-left">
+            <div class="topbar-logo">UZY<span>HUB</span></div>
+            <div class="topbar-badge">GUIDE</div>
+        </div>
+    </header>
+
+    <div class="content">
+
+        <div class="guide-title">Guide d'installation</div>
+        <div class="guide-intro">Bienvenue sur le guide d'installation de l'application mobile du Panel Admin du Uzy Hub.</div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">ÉTAPE 1</span>
+                <span class="step-title">Autoriser les sources inconnues</span>
+            </div>
+            <div class="step-body">Vérifier que votre application de fichier (My Files, Google Files, etc...) à l'autorisation d'installer des applications de source inconnue.</div>
+            <img class="step-img" src="https://cdn.discordapp.com/attachments/1462396944621240435/1498073109972910110/Screenshot_20260426_225750_Settings.jpg?ex=69efd4ce&is=69ee834e&hm=b1d9bb08dfb199eada4b5fcf4ff8a4396bd4099d6eacc334ed579c3a35640afc&" alt="Étape 1">
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">ÉTAPE 2</span>
+                <span class="step-title">Lire le guide</span>
+            </div>
+            <div class="step-body">Lisez attentivement le reste du guide !</div>
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">ÉTAPE 3</span>
+                <span class="step-title">Télécharger l'application</span>
+            </div>
+            <div class="step-body">Lorsque vous installerez l'application cliquez sur <strong style="color:var(--text)">"Télécharger quand même"</strong>.</div>
+            <img class="step-img" src="https://cdn.discordapp.com/attachments/1462396944621240435/1498073110338080850/Screenshot_20260426_230427_Chrome.jpg?ex=69efd4ce&is=69ee834e&hm=46230baf6b7fc68c21854a3f43f9cd28ea193e1086d78ecad1aba33271554144&" alt="Étape 3">
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">ÉTAPE 4</span>
+                <span class="step-title">Lancer l'installeur</span>
+            </div>
+            <div class="step-body">Lorsque vous appuyez sur <strong style="color:var(--text)">"Télécharger quand même"</strong> l'installeur se lancera et demandera <strong style="color:var(--text)">"Voulez-vous installer cette application ?"</strong> Appuyez sur <strong style="color:var(--success)">"Installer"</strong>.</div>
+            <img class="step-img" src="https://cdn.discordapp.com/attachments/1462396944621240435/1498073110635745400/Screenshot_20260426_230438_Package_installer.jpg?ex=69efd4ce&is=69ee834e&hm=020e7129c6f21732695d135c212dd9ec37bb0d0d472dab71a8975e648fb1b5cf&" alt="Étape 4">
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">ÉTAPE 5</span>
+                <span class="step-title">Ouvrir l'application</span>
+            </div>
+            <div class="step-body">Une fois l'installation terminée appuyez sur <strong style="color:var(--success)">"Ouvrir"</strong>.</div>
+            <img class="step-img" src="https://cdn.discordapp.com/attachments/1462396944621240435/1498073110946254878/Screenshot_20260426_230450_Package_installer.jpg?ex=69efd4ce&is=69ee834e&hm=a95a0ed0c95e6a73cec8109bc1561c283e52d913957b85829dc2f457f6019ae8&" alt="Étape 5">
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">ÉTAPE 6</span>
+                <span class="step-title">Application ouverte</span>
+            </div>
+            <div class="step-body">Après avoir appuyé sur <strong style="color:var(--success)">"Ouvrir"</strong> l'application s'ouvrira.</div>
+            <img class="step-img" src="https://cdn.discordapp.com/attachments/1462396944621240435/1498073111449305288/Screenshot_20260426_230456_Uzy_Hub_Panel.jpg?ex=69efd4ce&is=69ee834e&hm=5c68bac40e16e7625ef19db15340e4f2bae1b51220233075ce85ecc8ac81caaa&" alt="Étape 6">
+        </div>
+
+        <div class="step">
+            <div class="step-header">
+                <span class="step-number">ÉTAPE 7</span>
+                <span class="step-title">Installation confirmée</span>
+            </div>
+            <div class="step-body">Allez sur la page application et vous verrez que l'application est officiellement installée sur votre téléphone.</div>
+        </div>
+
+    </div>
+
+</body>
+</html>
