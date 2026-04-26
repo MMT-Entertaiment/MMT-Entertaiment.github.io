@@ -152,7 +152,7 @@
         }
         .m-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .m-info { flex: 1; min-width: 0; }
-        .m-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .m-name { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: flex; align-items: center; gap: 4px; }
         .m-type {
             font-size: 10px; font-family: 'DM Mono', monospace;
             margin-top: 3px; padding: 2px 7px; border-radius: 4px;
@@ -160,13 +160,21 @@
         }
 
         /* Couleurs par rôle */
-        .role-staff     { background: #f04747twentyish; background: #f0474720; color: #f04747; }
-        .role-helper    { background: #faa61a20; color: #faa61a; }
-        .role-createur  { background: #23d16020; color: #23d160; }
-        .role-supermembre { background: #5865F220; color: #5865F2; }
-        .role-membre    { background: #ffffff10; color: #aaa; }
-        .role-bot       { background: #5865F220; color: #5865F2; }
-        .role-aucun     { background: #ffffff08; color: var(--muted); }
+        .role-uzy         { background: #ffd70025; color: #ffd700; }
+        .role-staff       { background: #90ee9020; color: #90ee90; }
+        .role-helper      { background: #98fb9820; color: #98fb98; }
+        .role-createur    { background: #ff69b420; color: #ff69b4; }
+        .role-supermembre { background: #9b59b620; color: #b07ed6; }
+        .role-membre      { background: #7d3c9820; color: #a569bd; }
+        .role-bot         { background: #5865F220; color: #5865F2; }
+        .role-aucun       { background: #ffffff08; color: var(--muted); }
+
+        .vous-tag {
+            font-size: 10px; color: var(--muted);
+            font-style: italic; font-weight: 400;
+            font-family: 'DM Sans', sans-serif;
+            flex-shrink: 0;
+        }
 
         .bot-tag {
             font-size: 9px; font-family: 'DM Mono', monospace;
@@ -291,6 +299,7 @@
 
     // Rôles par priorité (le plus haut en premier)
     const ROLES = [
+        { id: "1462162699298541613", label: "Uzy",          css: "role-uzy" },
         { id: "1469732128680837130", label: "Staff",        css: "role-staff" },
         { id: "1469732499184685126", label: "Helper",       css: "role-helper" },
         { id: "1462172018727325807", label: "Créateur",     css: "role-createur" },
@@ -391,9 +400,13 @@
             return;
         }
 
+        const currentUser = JSON.parse(localStorage.getItem('discord_user') || '{}');
+
         el.innerHTML = members.map(m => {
             const user = m.user;
             const name = m.nick || user.global_name || user.username;
+            const isCurrentUser = user.id === currentUser.id;
+
             const avatarUrl = user.avatar
                 ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=64`
                 : null;
@@ -405,11 +418,13 @@
                 ? { label: "Bot", css: "role-bot" }
                 : getTopRole(m.roles || []);
 
+            const vousTag = isCurrentUser ? '<span class="vous-tag">(vous)</span>' : '';
+
             return `
                 <div class="member-item">
                     <div class="m-avatar">${avatarHTML}</div>
                     <div class="m-info">
-                        <div class="m-name">${name}</div>
+                        <div class="m-name"><span>${name}</span>${vousTag}</div>
                         <span class="m-type ${role.css}">${role.label}</span>
                     </div>
                     ${isBot ? '<span class="bot-tag">BOT</span>' : ''}
