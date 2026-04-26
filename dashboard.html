@@ -175,7 +175,7 @@
 
         .refresh-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 8px; padding: 6px 12px; font-size: 11px; font-family: 'DM Mono', monospace; cursor: pointer; }
         .empty { padding: 32px 16px; text-align: center; color: var(--muted); font-size: 13px; line-height: 1.6; }
-        .logs-sticky-header { position: sticky; top: 56px; z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+        .logs-sticky-header { position: sticky; top: 112px; z-index: 50; background: var(--surface); border-bottom: 1px solid var(--border); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
         .log-item { display: flex; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--border); }
         .log-item:last-child { border-bottom: none; }
         .log-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; overflow: hidden; flex-shrink: 0; }
@@ -661,6 +661,11 @@
                     .replace(/^&gt; (.+)/gm, '<span style="border-left:3px solid var(--border);padding-left:8px;color:var(--muted);display:block">$1</span>')
                     .replace(/&lt;@!?(\d+)&gt;/g, '<span style="color:var(--accent);background:var(--accent-glow);padding:0 4px;border-radius:4px">@user</span>')
                     .replace(/&lt;#(\d+)&gt;/g, '<span style="color:var(--accent);background:var(--accent-glow);padding:0 4px;border-radius:4px">#salon</span>')
+                    .replace(/\[(.+?)\]\(https?:\/\/[^)]+\)/g, '<span style="color:var(--accent)">$1</span>')
+                    .replace(/<t:(\d+)(?::R)?>/g, (_, ts) => {
+                        const d = new Date(parseInt(ts) * 1000);
+                        return '<span style="color:var(--muted);font-style:italic">' + d.toLocaleString("fr-FR", {day:"2-digit",month:"2-digit",year:"numeric",hour:"2-digit",minute:"2-digit"}) + '</span>';
+                    })
                     .replace(/\n/g, "<br>");
                 return `<div class="log-item">
                     <div class="log-avatar">${avatarHTML}</div>
