@@ -635,14 +635,35 @@
             if (data.success) { goBack(); await loadMembers(); }
         } catch { showToast('Erreur réseau', 'err'); }
     }
-
+    
     async function loadLogs() {
-        document.getElementById("logs-list").innerHTML = '<div class="empty">Chargement...</div>';
+        const container = document.getElementById('logs-list');
+        container.innerHTML = '<div class="empty">Chargement...</div>';
         try {
-            const data = await workerPost("/logs");
-            if (!data.messages || !data.messages.length) {
-                document.getElementById("logs-list").innerHTML = '<div class="empty">Aucun message trouvé.</div>';
+            const data = await workerPost('/logs');
+            if (!data.logs || data.logs.length === 0) {
+                container.innerHTML = '<div class="empty">Aucun log récent.</div>';
                 return;
+            }
+            // On inverse ici pour avoir le plus récent en haut
+            const logsInverses = data.logs.reverse();
+            
+            container.innerHTML = logsInverses.map(log => `
+                <div class="log-item">
+                    <div class="log-avatar">${log.author.charAt(0)}</div>
+                    <div class="log-body">
+                        <div class="log-header">
+                            <span class="log-author">${log.author}</span>
+                            <span class="log-date">${log.timestamp}</span>
+                        </div>
+                        <div class="log-content">${log.content}</div>
+                    </div>
+                </div>
+            `).join('');
+        } catch {
+            container.innerHTML = '<div class="empty">Erreur de chargement.</div>';
+        }
+    }
             }
             const msgs = [...data.messages].reverse();
             document.getElementById("logs-list").innerHTML = msgs.map(m => {
