@@ -135,11 +135,29 @@
             letter-spacing: .05em;
             text-align: center;
         }
+
+        /* TOPBAR */
+        .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 16px; height: 56px; display: flex; align-items: center; }
+        .topbar-left { display: flex; align-items: center; gap: 10px; }
+        .topbar-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .06em; line-height: 1; }
+        .topbar-logo span { color: var(--accent); }
+        .topbar-badge { font-size: 9px; font-family: 'DM Mono', monospace; letter-spacing: .12em; color: var(--accent); background: var(--accent-glow); padding: 3px 7px; border-radius: 4px; }
+
+        body { padding-top: 80px; }
+        .menu-btn { background: var(--accent-glow); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 5px 10px; font-size: 11px; font-family: 'DM Mono', monospace; font-weight: 600; letter-spacing: .06em; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: background .15s; }
+        .menu-btn:active { background: var(--accent); color: #fff; }
     </style>
 </head>
 <body>
 
-<div class="container">
+<header class="topbar">
+    <div class="topbar-left">
+        <div class="topbar-logo">UZY<span>HUB</span></div>
+        <div class="topbar-badge">HOME</div>
+    </div>
+    <a class="menu-btn" href="https://MMT-Entertaiment.github.io/menu.html" target="_blank">☰ Menu</a>
+</header>
+
 
     <img
         class="logo-img"
