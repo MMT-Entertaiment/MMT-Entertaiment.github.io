@@ -26,9 +26,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
             position: relative;
             overflow: hidden;
         }
@@ -43,6 +40,24 @@
             pointer-events: none;
         }
 
+        /* TOPBAR */
+        .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 16px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .topbar-left { display: flex; align-items: center; gap: 10px; }
+        .topbar-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .06em; line-height: 1; }
+        .topbar-logo span { color: var(--accent); }
+        .topbar-badge { font-size: 9px; font-family: 'DM Mono', monospace; letter-spacing: .12em; color: var(--accent); background: var(--accent-glow); padding: 3px 7px; border-radius: 4px; }
+        .menu-btn { background: var(--accent-glow); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 5px 10px; font-size: 11px; font-family: 'DM Mono', monospace; font-weight: 600; letter-spacing: .06em; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: background .15s; }
+        .menu-btn:active { background: var(--accent); color: #fff; }
+
+        /* MAIN */
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px 24px;
+        }
+
         .container {
             display: flex;
             flex-direction: column;
@@ -54,9 +69,7 @@
 
         .logo-img {
             width: 120px;
-            max-width: 120px;
             height: 120px;
-            max-height: 120px;
             object-fit: contain;
             border-radius: 24px;
         }
@@ -114,12 +127,10 @@
             padding: 0;
             border-radius: 12px;
             overflow: hidden;
-            transition: transform .15s, opacity .15s;
+            transition: transform .15s;
         }
 
-        .discord-btn:active {
-            transform: scale(0.97);
-        }
+        .discord-btn:active { transform: scale(0.97); }
 
         .discord-btn img {
             width: 100%;
@@ -135,17 +146,6 @@
             letter-spacing: .05em;
             text-align: center;
         }
-
-        /* TOPBAR */
-        .topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 16px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-        .topbar-left { display: flex; align-items: center; gap: 10px; }
-        .topbar-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .06em; line-height: 1; }
-        .topbar-logo span { color: var(--accent); }
-        .topbar-badge { font-size: 9px; font-family: 'DM Mono', monospace; letter-spacing: .12em; color: var(--accent); background: var(--accent-glow); padding: 3px 7px; border-radius: 4px; }
-        .menu-btn { background: var(--accent-glow); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 5px 10px; font-size: 11px; font-family: 'DM Mono', monospace; font-weight: 600; letter-spacing: .06em; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: background .15s; }
-        .menu-btn:active { background: var(--accent); color: #fff; }
-
-        body { padding-top: 56px; }
     </style>
 </head>
 <body>
@@ -158,32 +158,36 @@
     <a class="menu-btn" href="https://MMT-Entertaiment.github.io/menu.html" target="_blank">☰ Menu</a>
 </header>
 
+<div class="main">
+    <div class="container">
 
-    <img
-        class="logo-img"
-        src="https://i.postimg.cc/c4THS4bR/Sans-titre-13-20260117134917.png"
-        alt="Uzy Hub Logo" width="120" height="120" style="width:120px;height:120px;object-fit:contain;"
-    >
+        <img class="logo-img"
+            src="https://i.postimg.cc/c4THS4bR/Sans-titre-13-20260117134917.png"
+            alt="Uzy Hub Logo">
 
-    <div class="title">
-        <div class="title-main">UZY HUB ONLINE PANEL</div>
-        <div class="title-sub">Espace réservé aux administrateurs</div>
-    </div>
-
-    <div class="card">
-        <div class="card-text">
-            Connectez-vous avec votre compte Discord pour accéder au panel d'administration.
+        <div class="title">
+            <div class="title-main">UZY HUB WEB SITE</div>
+            <div class="title-sub">Site officiel du Uzy Hub</div>
         </div>
-        <button class="discord-btn" onclick="loginWithDiscord()">
-            <img
-                src="https://i.postimg.cc/TYQw6Y4t/Sans-titre-84-20260426180425.png"
-                alt="Se connecter avec Discord"
-            >
-        </button>
+
+        <div class="card">
+            <div class="card-text">
+                Connectez-vous avec votre compte Administrateur pour accéder au panel Admin.
+            </div>
+            <button class="discord-btn" onclick="loginWithDiscord()">
+                <img src="https://i.postimg.cc/Bb7GX5v3/Sans-titre-84-20260429130712.png"
+                    alt="Se connecter avec Discord">
+            </button>
+            <div class="card-text">Ou connectez-vous avec votre compte Discord pour accéder au panel des Membres.</div>
+            <button class="discord-btn" onclick="loginWithDiscord()">
+                <img src="https://i.postimg.cc/qqDdzc74/Sans-titre-84-20260429130715.png"
+                    alt="Se connecter avec Discord">
+            </button>
+        </div>
+
+        <div class="footer">Powered by Uzy Hub Support bot</div>
+
     </div>
-
-    <div class="footer">Powered by Uzy Hub Support bot</div>
-
 </div>
 
 <script>
@@ -201,7 +205,6 @@
         window.location.href = `https://discord.com/oauth2/authorize?${params}`;
     }
 
-    // Si déjà connecté, rediriger directement vers le dashboard
     if (localStorage.getItem('discord_token') && localStorage.getItem('discord_user')) {
         window.location.href = 'dashboard.html';
     }
