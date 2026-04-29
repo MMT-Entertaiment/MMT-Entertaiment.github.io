@@ -179,7 +179,7 @@
                     alt="Se connecter avec Discord">
             </button>
             <div class="card-text">Ou connectez-vous avec votre compte Discord pour accéder au panel des Membres.</div>
-            <button class="discord-btn" onclick="loginWithDiscord()">
+            <button class="discord-btn" onclick="loginWithDiscordMember()">
                 <img src="https://i.postimg.cc/qqDdzc74/Sans-titre-84-20260429130715.png"
                     alt="Se connecter avec Discord">
             </button>
@@ -205,8 +205,24 @@
         window.location.href = `https://discord.com/oauth2/authorize?${params}`;
     }
 
+    const MEMBER_CLIENT_ID = "1499007774632185917";
+    const MEMBER_REDIRECT_URI = "https://mmt-entertaiment.github.io/callbackmember.html";
+
+    function loginWithDiscordMember() {
+        const params = new URLSearchParams({
+            client_id: MEMBER_CLIENT_ID,
+            redirect_uri: MEMBER_REDIRECT_URI,
+            response_type: "code",
+            scope: SCOPE,
+        });
+        window.location.href = `https://discord.com/oauth2/authorize?${params}`;
+    }
+
     if (localStorage.getItem('discord_token') && localStorage.getItem('discord_user')) {
         window.location.href = 'dashboard.html';
+    }
+    if (localStorage.getItem('member_token') && localStorage.getItem('member_user')) {
+        window.location.href = 'member.html';
     }
 </script>
 </body>
