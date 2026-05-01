@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzy Hub — Conditions d'Utilisation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080a0e;
+            --surface: #0f1117;
+            --surface2: #161820;
+            --border: #1f2230;
+            --accent: #5865F2;
+            --accent-glow: #5865F240;
+            --text: #e8eaf2;
+            --muted: #555870;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+        /* TOPBAR */
+        .topbar { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 16px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+        .topbar-left { display: flex; align-items: center; gap: 10px; }
+        .topbar-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: .06em; line-height: 1; }
+        .topbar-logo span { color: var(--accent); }
+        .topbar-badge { font-size: 9px; font-family: 'DM Mono', monospace; letter-spacing: .12em; color: var(--accent); background: var(--accent-glow); padding: 3px 7px; border-radius: 4px; }
+        .menu-btn { background: var(--accent-glow); border: 1px solid var(--accent); color: var(--accent); border-radius: 8px; padding: 5px 10px; font-size: 11px; font-family: 'DM Mono', monospace; font-weight: 600; letter-spacing: .06em; cursor: pointer; text-decoration: none; display: flex; align-items: center; gap: 5px; transition: background .15s; }
+        .menu-btn:active { background: var(--accent); color: #fff; }
+
+        /* CONTENT */
+        .content { padding: 24px 16px 48px; max-width: 600px; margin: 0 auto; }
+
+        .page-title { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: .04em; margin-bottom: 4px; }
+        .page-sub { font-size: 12px; color: var(--muted); font-family: 'DM Mono', monospace; margin-bottom: 28px; }
+
+        /* ARTICLE */
+        .article { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 12px; }
+        .article-header { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+        .article-number { font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: .1em; color: var(--accent); background: var(--accent-glow); padding: 3px 10px; border-radius: 6px; flex-shrink: 0; }
+        .article-title { font-size: 14px; font-weight: 600; }
+        .article-body { padding: 14px 16px; font-size: 13px; color: var(--muted); line-height: 1.8; }
+        .article-body ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .article-body ul li::before { content: '—'; color: var(--accent); margin-right: 8px; font-family: 'DM Mono', monospace; }
+        .article-body strong { color: var(--text); font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<header class="topbar">
+    <div class="topbar-left">
+        <div class="topbar-logo">UZY<span>HUB</span></div>
+        <div class="topbar-badge">TOS</div>
+    </div>
+    <a class="menu-btn" href="https://MMT-Entertaiment.github.io/menu.html" target="_blank">☰ Menu</a>
+</header>
+
+<div class="content">
+
+    <div class="page-title">Conditions d'Utilisation</div>
+    <div class="page-sub">Conditions Générales d'Utilisation — UzyHub</div>
+
+    <div class="article">
+        <div class="article-header">
+            <span class="article-number">ART. 1</span>
+            <span class="article-title">Objet et Services</span>
+        </div>
+        <div class="article-body">
+            La plateforme UzyHub est l'infrastructure centrale de l'écosystème UzySystem. Elle regroupe :
+            <ul style="margin-top:10px;">
+                <li><strong>UzyHub Profil</strong> : Système de visualisation des profils et données utilisateurs.</li>
+                <li><strong>Panel Admin</strong> : Interface de gestion et de modération réservée au personnel autorisé.</li>
+                <li><strong>Notifications Push</strong> : Système d'alerte actuellement en phase de développement.</li>
+                <li><strong>Accessibilité</strong> : Le site web et l'application mobile sont des services strictement liés à la Plate-forme UzyHub, dont l'accès est réservé exclusivement aux membres de ladite plateforme.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="article">
+        <div class="article-header">
+            <span class="article-number">ART. 2</span>
+            <span class="article-title">Écosystème et Hébergement</span>
+        </div>
+        <div class="article-body">
+            <ul>
+                <li><strong>Structure</strong> : La Plate-forme UzyHub est opérée au sein de l'infrastructure sociale fournie par Discord Inc.</li>
+                <li><strong>Authentification</strong> : L'accès aux services nécessite l'utilisation du protocole Discord Open Authorization 2.0 (OAuth2) pour l'identification des membres.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="article">
+        <div class="article-header">
+            <span class="article-number">ART. 3</span>
+            <span class="article-title">Propriété Intellectuelle et Usage des Marques</span>
+        </div>
+        <div class="article-body">
+            <ul>
+                <li><strong>Licence UzySystem</strong> : L'intégralité des éléments visuels (photos de profil, logos UzySystem) et le design de l'interface sont la propriété exclusive de son créateur.</li>
+                <li><strong>Usage Tierce</strong> : L'utilisation du nom et de l'identité visuelle de Discord est effectuée uniquement à des fins de mention et d'identification des services liés.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="article">
+        <div class="article-header">
+            <span class="article-number">ART. 4</span>
+            <span class="article-title">Protection des Données (Protocole RAM locale)</span>
+        </div>
+        <div class="article-body">
+            UzyHub applique un principe de non-persistance des données pour garantir la confidentialité :
+            <ul style="margin-top:10px;">
+                <li><strong>Flux de données</strong> : Les informations sont récupérées en temps réel via l'API Discord.</li>
+                <li><strong>Stockage Temporaire</strong> : Les données sont maintenues uniquement dans la mémoire RAM en local de l'hôte.</li>
+                <li><strong>Zéro Persistance</strong> : Aucune donnée n'est transférée vers des bases de données externes ou des services cloud tiers.</li>
+                <li><strong>Volatilité</strong> : Le cache est intégralement vidé à chaque actualisation ou fermeture de session.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="article">
+        <div class="article-header">
+            <span class="article-number">ART. 5</span>
+            <span class="article-title">Utilisation du Panel Admin et Modération</span>
+        </div>
+        <div class="article-body">
+            <ul>
+                <li><strong>Accès restreint</strong> : L'utilisation des outils d'administration est strictement réservée aux membres habilités.</li>
+                <li><strong>Éthique des Sanctions</strong> : Toute action de modération effectuée via UzyHub doit être accompagnée d'une raison valable et justifiée.</li>
+                <li><strong>Règlement Source</strong> : La validité des sanctions repose sur le règlement officiel du serveur Discord référent.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="article">
+        <div class="article-header">
+            <span class="article-number">ART. 6</span>
+            <span class="article-title">Responsabilité et Limitation</span>
+        </div>
+        <div class="article-body">
+            <ul>
+                <li><strong>Responsabilité de l'Éditeur</strong> : Tout dysfonctionnement technique provenant directement du site UzyHub ou de son application interne relève de la responsabilité de son créateur.</li>
+                <li><strong>Responsabilité Tierce</strong> : Tout problème, interruption de service ou incident technique provenant de l'infrastructure de Discord relève exclusivement de la responsabilité de Discord Inc.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="article">
+        <div class="article-header">
+            <span class="article-number">ART. 7</span>
+            <span class="article-title">Clauses Techniques</span>
+        </div>
+        <div class="article-body">
+            <ul>
+                <li><strong>Disponibilité</strong> : L'accès aux services peut être suspendu pour maintenance ou mise à jour sans préavis.</li>
+                <li><strong>Évolution</strong> : Le créateur se réserve le droit de modifier les fonctionnalités d'UzyHub pour garantir la sécurité et l'intégrité de l'écosystème.</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
