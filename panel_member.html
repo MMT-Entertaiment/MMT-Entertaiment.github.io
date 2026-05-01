@@ -180,7 +180,7 @@
             </div>
             <div class="card">
                 <div class="card-header"><div class="card-title">NIVEAU D'AVERTISSEMENT</div></div>
-                <div class="warn-block" id="warn-block"><span class="warn-clean">✓ Vous êtes clean</span></div>
+                <div class="warn-block" id="warn-block"><span class="warn-clean">Vous êtes <span class="warn-clean-value">clean</span></span></div>
             </div>
         </div>
 
@@ -233,10 +233,10 @@
     ];
 
     const WARN_ROLES = [
-        { id: "1494746832754966620", label: "⚠️ Avertissement Niveau 1", css: "role-warn1" },
-        { id: "1494747000271274044", label: "⚠️ Avertissement Niveau 2", css: "role-warn2" },
-        { id: "1494747793741582519", label: "⚠️ Avertissement Niveau 3", css: "role-warn3" },
-        { id: "1494748183731896522", label: "⚠️ Avertissement Niveau 4", css: "role-warn4" },
+        { id: "1494746832754966620", label: "Avertissement Niveau 1", css: "role-warn1" },
+        { id: "1494747000271274044", label: "Avertissement Niveau 2", css: "role-warn2" },
+        { id: "1494747793741582519", label: "Avertissement Niveau 3", css: "role-warn3" },
+        { id: "1494748183731896522", label: "Avertissement Niveau 4", css: "role-warn4" },
     ];
 
     let allMembers = [];
@@ -307,7 +307,7 @@
         if (warn) {
             warnEl.innerHTML = `<span class="m-type ${warn.css}">${warn.label}</span>`;
         } else {
-            warnEl.innerHTML = `<span class="warn-clean">✓ Vous êtes clean</span>`;
+            warnEl.innerHTML = `<span class="warn-clean">Vous êtes <span class="warn-clean-value">clean</span></span>`;
         }
     }
 
