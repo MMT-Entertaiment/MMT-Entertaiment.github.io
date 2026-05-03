@@ -58,30 +58,15 @@
 </div>
 
 <script>
-    const WORKER_URL = "https://oauth2-member.uzydoorman.workers.dev";
+    const WORKER_URL = "https://oauth2member.uzydoorman.workers.dev";;
     const MEMBER_ROLE_ID = "1462169371785953534";
 
     async function handleCallback() {
-        // Si déjà connecté, rediriger directement
-        if (localStorage.getItem('member_token') && localStorage.getItem('member_user')) {
-            window.location.href = 'panel_member.html';
-            return;
-        }
-
         const params = new URLSearchParams(window.location.search);
         const code = params.get("code");
 
-        // Pas de code = lancer OAuth2
         if (!code) {
-            const MEMBER_CLIENT_ID = "1499007774632185917";
-            const MEMBER_REDIRECT_URI = "https://mmt-entertaiment.github.io/callbackmember.html";
-            const oauthParams = new URLSearchParams({
-                client_id: MEMBER_CLIENT_ID,
-                redirect_uri: MEMBER_REDIRECT_URI,
-                response_type: "code",
-                scope: "identify guilds.members.read",
-            });
-            window.location.href = `https://discord.com/oauth2/authorize?${oauthParams}`;
+            showError("Erreur 1: Vous n'êtes pas membre du serveur, si vous l'êtes veuillez nous contacter sur le serveur Discord.");
             return;
         }
 
